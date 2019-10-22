@@ -14,4 +14,15 @@ script: ./vendor/bin/phpunit --colors tests
 cache:
     directories:
         - vendor
+        
+dist: trusty
 
+addons:
+  sonarcloud:
+    organization: "phpsonar"
+    token:
+      secure: "93b346202d84892a7b7f112f3ba3a1c54723cab4" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - sonar-scanner
